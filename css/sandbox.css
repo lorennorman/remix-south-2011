@@ -1,0 +1,51 @@
+body {
+  background-color: #F4F4F4;
+/*  padding-top: 50px;*/
+}
+
+img {
+  display: none;
+}
+
+canvas {
+  border: 1px solid black;
+}
+
+fieldset {
+  display: inline-block;
+}
+
+input {
+  width: 60px;
+}
+
+p {
+  margin: 0;
+}
+
+#sandbox {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  top: -60px;
+  right: 0px;
+}
+
+#canvas_container {
+  position: absolute;
+  left: 5px;
+  top: 10px;
+}
+
+#console_container {
+  position: absolute;
+  right: 5px;
+  top: 10px;
+}
+
+#console {
+  font-family: Monaco;
+  font-size: 18px;
+}
