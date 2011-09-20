@@ -194,9 +194,56 @@ function animateStep() {\n\
   drawSmiley();\n\
 }\n\
 \n\
-animateStep();'
+animateStep();\n\
+\n\
+\n\
+\n\
+// setInterval(animateStep, 1000);'
 
-, transformBasic: '// disable state\n\
+, advancedTemplate: '// advanced\n\
+var update = function(delta) {\n\
+  // your updates here\n\
+};\n\
+\n\
+var render = function() {\n\
+  // your renders here\n\
+};'
+
+, animate2: '// advanced\n\
+var x = 0\n\
+  , y = 0;\n\
+\n\
+var update = function(delta) {\n\
+  x += 5;\n\
+  y += 5;\n\
+};\n\
+\n\
+var render = function() {\n\
+  ctx.fillStyle = "gray";\n\
+  ctx.fillRect(0,0,800,600);\n\
+  drawSmiley();\n\
+};\n\
+\n\
+function drawSmiley() {\n\
+  ctx.beginPath();\n\
+  ctx.arc(x+75,y+75,50,0,Math.PI*2,true);\n\
+  ctx.fillStyle = "yellow";\n\
+  ctx.fill();\n\
+\n\
+  ctx.moveTo(x+110,y+75);\n\
+  ctx.arc(x+75,y+75,35,0,Math.PI,false);\n\
+  ctx.moveTo(x+65,y+65);\n\
+  ctx.arc(x+60,y+65,5,0,Math.PI*2,true);\n\
+  ctx.moveTo(x+95,y+65);\n\
+  ctx.arc(x+90,y+65,5,0,Math.PI*2,true);\n\
+  ctx.stroke();\n\
+};'
+
+, transformBasic: '// basic\n\
+\n\
+ctx.fillStyle = "gray";\n\
+ctx.fillRect(0,0,800,600);\n\
+\n\
 ctx.translate(0, 0);\n\
 ctx.rotate(0*Math.PI/180);\n\
 ctx.scale(1.0, 1.0);\n\
@@ -216,38 +263,19 @@ function drawSmiley() {\n\
   ctx.stroke();\n\
 }\n\
 \n\
-drawSmiley();'
+drawSmiley();\n\
+'
 
-, transformAnimate: '// disable state\n\
-ctx.translate(200, 200);\n\
-\n\
-function drawSmiley() {\n\
-  ctx.beginPath();\n\
-  ctx.arc(0,0,50,0,Math.PI*2,true);\n\
-  ctx.fillStyle = "yellow";\n\
-  ctx.fill();\n\
-\n\
-  ctx.moveTo(35,0);\n\
-  ctx.arc(0,0,35,0,Math.PI,false);\n\
-  ctx.moveTo(-10,-10);\n\
-  ctx.arc(-15,-10,5,0,Math.PI*2,true);\n\
-  ctx.moveTo(20,-10);\n\
-  ctx.arc(15,-10,5,0,Math.PI*2,true);\n\
-  ctx.stroke();\n\
-}\n\
-\n\
-function animateStep() {\n\
+, transformAnimate: '// advanced\n\
+var update = function() {\n\
   ctx.translate(10, 10);\n\
   // ctx.rotate(15*Math.PI/180);\n\
   // ctx.scale(1.25, 1.25);\n\
-\n\
-  drawSmiley();\n\
 }\n\
 \n\
-// setInterval(animateStep, 500);'
-
-, stateAnimate: '// disable state\n\
-// ctx.translate(200, 200);\n\
+var render = function() {\n\
+  drawSmiley();\n\
+}\n\
 \n\
 function drawSmiley() {\n\
   ctx.beginPath();\n\
@@ -263,30 +291,100 @@ function drawSmiley() {\n\
   ctx.arc(15,-10,5,0,Math.PI*2,true);\n\
   ctx.stroke();\n\
 }\n\
+'
+
+, stateAnimate: '// advanced\n\
+var x        = 0\n\
+  , y        = 0\n\
+  , rotation = 0\n\
+  , scaleX   = 1.0\n\
+  , scaleY   = 1.0;\n\
 \n\
-var x=0, y=0, rotation=0, scaleX=1.0, scaleY=1.0;\n\
-\n\
-function animateStep() {\n\
+var update = function(delta) {\n\
   x += 10;\n\
   y += 5;\n\
   rotation += 5;\n\
   scaleX *= 1.01;\n\
   scaleY *= 1.02;\n\
+};\n\
 \n\
+var render = function() {\n\
   ctx.fillStyle   = "#888";\n\
   ctx.fillRect(0,0,640,480);\n\
 \n\
   ctx.save();\n\
+\n\
   ctx.translate(x, y);\n\
   ctx.rotate(rotation*Math.PI/180);\n\
   ctx.scale(scaleX, scaleY);\n\
 \n\
   drawSmiley();\n\
+\n\
   ctx.restore();\n\
+};\n\
 \n\
+function drawSmiley() {\n\
+  ctx.beginPath();\n\
+  ctx.arc(0,0,50,0,Math.PI*2,true);\n\
+  ctx.fillStyle = "yellow";\n\
+  ctx.fill();\n\
+\n\
+  ctx.moveTo(35,0);\n\
+  ctx.arc(0,0,35,0,Math.PI,false);\n\
+  ctx.moveTo(-10,-10);\n\
+  ctx.arc(-15,-10,5,0,Math.PI*2,true);\n\
+  ctx.moveTo(20,-10);\n\
+  ctx.arc(15,-10,5,0,Math.PI*2,true);\n\
+  ctx.stroke();\n\
 }\n\
+'
+
+, oscillators: 'var x        = 0\n\
+  , txOsc    = Oscillator(0,640, 10)\n\
+  , y        = 0\n\
+  , tyOsc    = Oscillator(0,480, 10)\n\
+  , rotation = 0\n\
+  , scaleX   = 1.0\n\
+  , sxOsc    = Oscillator(0.5,1.5,0.02)\n\
+  , scaleY   = 1.0\n\
+  , syOsc    = Oscillator(0.25,1.75,0.035);\n\
 \n\
-setInterval(animateStep, 50);'
-
-
+var update = function(delta) {\n\
+  x = txOsc();\n\
+  y = tyOsc();\n\
+  rotation += 5;\n\
+  scaleX = sxOsc();\n\
+  scaleY = syOsc();\n\
+};\n\
+\n\
+var render = function() {\n\
+  ctx.fillStyle   = "#888";\n\
+  ctx.fillRect(0,0,640,480);\n\
+\n\
+  ctx.save();\n\
+\n\
+  ctx.translate(x, y);\n\
+  ctx.rotate(rotation*Math.PI/180);\n\
+  ctx.scale(scaleX, scaleY);\n\
+\n\
+  drawSmiley();\n\
+\n\
+  ctx.restore();\n\
+};\n\
+\n\
+function drawSmiley() {\n\
+  ctx.beginPath();\n\
+  ctx.arc(0,0,50,0,Math.PI*2,true);\n\
+  ctx.fillStyle = "yellow";\n\
+  ctx.fill();\n\
+\n\
+  ctx.moveTo(35,0);\n\
+  ctx.arc(0,0,35,0,Math.PI,false);\n\
+  ctx.moveTo(-10,-10);\n\
+  ctx.arc(-15,-10,5,0,Math.PI*2,true);\n\
+  ctx.moveTo(20,-10);\n\
+  ctx.arc(15,-10,5,0,Math.PI*2,true);\n\
+  ctx.stroke();\n\
+}\n\
+'
 }
