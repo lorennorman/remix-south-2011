@@ -9,25 +9,34 @@
     <div id="sandbox">
       <img id="rhino" src="images/rhino.jpg">
 
+      <div id="sub_menu">
+        <label for="advanced_toggle">Advanced?</label>
+        <input type="checkbox" id="advanced_toggle" />
+      </div>
+
       <fieldset class="menu">
         <legend>Menu</legend>
-
-        <!-- <fieldset class="settings">
-          <legend>Settings</legend>
-
-          <p> -->
+          <div class="control basic">
             <label for="background_color">Background</label>
             <input id="background_color" value="#888"/>
+          </div>
 
+          <div class="control basic">
             <label for="stroke_color">Stroke</label>
             <input id="stroke_color" value="#000"/>
+          </div>
 
+          <div class="control basic">
             <label for="line_width">Width</label>
             <input id="line_width" value="2"/>
+          </div>
 
+          <div class="control basic">
             <label for="fill_color">Fill</label>
             <input id="fill_color" value="#000"/>
+          </div>
 
+          <div class="control basic">
             <label for="scale">Scale</label>
             <select id="scale">
               <option value="0.25">0.25</option>
@@ -37,12 +46,25 @@
               <option value="3.0">3.0</option>
               <option value="4.0">4.0</option>
             </select>
+          </div>
+
+          <div class="control advanced">
+            <label for="fps">FPS</label>
+            <select id="fps">
+              <option value="1" selected="selected">1</option>
+              <option value="2">2</option>
+              <option value="8">8</option>
+              <option value="30">30</option>
+              <option value="60">60</option>
+            </select>
+          </div>
 
           <!-- </p>
 
           <p>for real</p>
         </fieldset> -->
 
+        <button class="stop control advanced">stop</button>
         <button class="run">run</button>
         <button class="edit">edit</button>
         <select id="examples"><option>Examples</option></select>
